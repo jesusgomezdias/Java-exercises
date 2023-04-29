@@ -1,23 +1,32 @@
-package lotery_primitiva_generator;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
         Random random = new Random();
-        int[] reintegro = {random.nextInt(10)};
+        int[] num = new int[6];
+        int[] r = { random.nextInt(9) };
 
-        while (numeros.size() < 6) {
+        for (int i = 0; i < 6; i++) {
             int numero = random.nextInt(49) + 1;
 
-            if (!numeros.contains(numero)) {
-                numeros.add(numero);
+            // Check if the number is already in the array
+            for (int j = 0; j < i; j++) {
+                if (num[j] == numero) {
+                    // Number is already in the array, generate a new one
+                    i--;
+                    break;
+                }
             }
+
+            // Add the number to the array
+            num[i] = numero;
         }
 
-        System.out.println("Numeros: " + numeros);
-        System.out.println("Reintegro: " + reintegro[0]);
+        System.out.print("Numeros: ");
+        for (int i = 0; i < 6; i++) {
+            System.out.print(num[i] + " ");
+        }
+
+        System.out.print("\nReintegro: " + r[0]);
     }
 }
